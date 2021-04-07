@@ -1,24 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Form from './components/Form';
+import Informacion from './components/Informacion';
+import styled from '@emotion/styled';
+import axios from './config/Axios';
+
+const Contenedor = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
+
 
 function App() {
+
+  const [pokemon, setPokemon] = useState({
+
+    name: '',
+    img: '' 
+  });
+
+  useEffect(() => {
+    
+  }, [pokemon.name])
+
+  const getPokemonByName = async (name) => {
+    
+    const result = await axios.get(`pokemon/${name}`);
+    const obtainedPokemon = {
+      name: result.data.name,
+      img: result.data.sprites.front_default
+    }
+    console.log(obtainedPokemon);
+    setPokemon(obtainedPokemon);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Contenedor>
+      <Header
+
+      />
+
+      <Form
+        setPokemonNameSearch={getPokemonByName}
+      />
+
+      <Informacion 
+        name = {pokemon.name}
+        img = {pokemon.img}
+      />
+
+    </Contenedor>
+
   );
 }
 
