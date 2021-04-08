@@ -1,28 +1,41 @@
 import React, { useState } from 'react';
+import styled from '@emotion/styled';
 
+const SearhForm = styled.form`
+    display: flex;
+    justify-content: center;
+`;
 
 const Form = ({ setPokemonNameSearch }) => {
 
     const [name, setName] = useState('');
+    const [error, setError] = useState(false);
 
     const handleName = e => {
         setName(
-            e.target.value
+            e.target.name = e.target.value.toLowerCase()
+
         );
     }
 
     const handleSubmit = e => {
         e.preventDefault();
+
+        if (name.trim() === '') {
+            setError(true);
+            return;
+        }
+        setError(false);
+
         setPokemonNameSearch(name);
     }
 
 
-
-
     return (
-        <form
+        <SearhForm
             onSubmit={handleSubmit}
         >
+
             <input
                 type='text'
                 name='pokemon'
@@ -30,7 +43,14 @@ const Form = ({ setPokemonNameSearch }) => {
                 onChange={handleName}
             />
             <button>apretame puto</button>
-        </form>
+
+            {error
+                ? <p>Se requiere un nombre</p>
+                : null
+            }
+
+
+        </SearhForm>
     );
 }
 

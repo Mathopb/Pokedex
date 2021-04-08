@@ -32,6 +32,7 @@ function App() {
       img: result.data.sprites.front_default
     }
     console.log(obtainedPokemon);
+    console.log(result);
     setPokemon(obtainedPokemon);
   }
 

@@ -13,7 +13,7 @@ const Cabezal = styled.div`
 const Header = () => {
     return ( 
         <Cabezal>
-            <h1>Kaka</h1>
+            <h1>Pokedex</h1>
         </Cabezal>
      );
 }
