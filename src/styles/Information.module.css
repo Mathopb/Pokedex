@@ -1,0 +1,16 @@
+.p {
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+
+.pokemonSprite {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contenedores {
+    border-style: solid;
+    border-color: red;
+}

@@ -13,7 +13,7 @@ const Form = ({ setPokemonNameSearch }) => {
 
     const handleName = e => {
         setName(
-            e.target.name = e.target.value.toLowerCase()
+            e.target.value
 
         );
     }
