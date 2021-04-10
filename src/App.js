@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import axios from './config/Axios';
 
 const Contenedor = styled.div`
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 `;
 
@@ -19,7 +19,10 @@ function App() {
     name: '',
     img: '',
     order: '',
-    weight: ''
+    weight: '',
+    height: '',
+    abilities: '',
+    moves: ''
   });
 
   useEffect(() => {
@@ -31,10 +34,12 @@ function App() {
     const result = await axios.get(`pokemon/${name.toLowerCase()}`);
     const obtainedPokemon = {
       name: result.data.name,
-      img: result.data.sprites.front_default,
-      // type: result.data.types.0.type.name
+      img: result.data.sprites.other['official-artwork'].front_default,
       order: result.data.order,
-      weight: result.data.weight
+      weight: result.data.weight,
+      height: result.data.height,
+      abilities: result.data.abilities,
+      moves: result.data.moves
     }
     console.log(obtainedPokemon);
     console.log(result);
@@ -58,6 +63,10 @@ function App() {
         img = {pokemon.img}
         order = {pokemon.order}
         weight = {pokemon.weight}
+        type = {pokemon.type}
+        height = {pokemon.height}
+        abilities = {pokemon.abilities}
+        moves = {pokemon.moves}
       />
 
     </Contenedor>

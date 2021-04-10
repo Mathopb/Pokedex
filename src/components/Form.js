@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
-
-const SearhForm = styled.form`
-    display: flex;
-    justify-content: center;
-`;
 
 const Form = ({ setPokemonNameSearch }) => {
 
@@ -32,7 +26,7 @@ const Form = ({ setPokemonNameSearch }) => {
 
 
     return (
-        <SearhForm
+        <form
             onSubmit={handleSubmit}
         >
 
@@ -50,7 +44,7 @@ const Form = ({ setPokemonNameSearch }) => {
             }
 
 
-        </SearhForm>
+        </form>
     );
 }
 
