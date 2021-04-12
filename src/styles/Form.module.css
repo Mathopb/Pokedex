@@ -1,0 +1,15 @@
+.searchInput{
+    display: block;
+    margin-right: 2rem;
+}
+
+.errorMesaje{
+    display:block;
+    width: 50%;
+}
+
+.formStyle{
+    display: flex;
+    direction: row;
+    padding: 2rem 0;
+}

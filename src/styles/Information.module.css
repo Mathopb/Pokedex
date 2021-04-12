@@ -1,16 +1,22 @@
-.p {
-    text-align: center;
-    font-size: 1.5rem;
-    text-transform: capitalize;
+.pokemonName {
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: bold;
 }
 
 .pokemonSprite {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .contenedores {
-    border-style: solid;
-    border-color: red;
+  border-style: solid;
+  border-color: red;
+}
+
+.listAbilities {
+  list-style-type: none;
+  text-transform: capitalize;
+  padding: 2px;
 }

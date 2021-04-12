@@ -2,14 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
 import Pokemon from './components/Pokemon';
-import styled from '@emotion/styled';
+import PokemonFullList from './components/PokemonFullList';
 import axios from './config/Axios';
-
-const Contenedor = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-`;
-
 
 
 function App() {
@@ -25,12 +19,26 @@ function App() {
     moves: ''
   });
 
+  const [offset, setOffset] = useState(0);
+  const [listmax, setListMax] = useState(0);
+  const [pokemonlist, setPokemonList] = useState([]);
+
   useEffect(() => {
-    
-  }, [pokemon.name])
+
+    const getAllPokemons = async () => {
+      const result = await axios.get(`pokemon?limit=25&offset=${offset}`);
+
+      setPokemonList(result.data.results);
+
+      setListMax(result.data.count);
+
+    }
+    getAllPokemons();
+
+  }, [offset])
 
   const getPokemonByName = async (name) => {
-    
+
     const result = await axios.get(`pokemon/${name.toLowerCase()}`);
     const obtainedPokemon = {
       name: result.data.name,
@@ -41,35 +49,75 @@ function App() {
       abilities: result.data.abilities,
       moves: result.data.moves
     }
-    console.log(obtainedPokemon);
+    // console.log(obtainedPokemon);
     console.log(result);
     setPokemon(obtainedPokemon);
   }
-  
+
+  const handleNext = () => {
+
+    if ((offset + 25) > listmax) return;
+
+    setOffset(offset + 25);
+
+  }
+
+  const handlePrev = () => {
+
+    if (offset === 0) return;
+
+    setOffset(offset - 25);
+
+  }
+
+  const resetSearch = () => {
+
+    setOffset(0);
+
+    setPokemon({
+      name: '',
+      img: '',
+      order: '',
+      weight: '',
+      height: '',
+      abilities: '',
+      moves: ''
+    });
+
+  }
 
   return (
 
-    <Contenedor>
+    <div className="container">
       <Header
 
       />
 
       <Form
         setPokemonNameSearch={getPokemonByName}
+        resetSearch={resetSearch}
       />
 
-      <Pokemon 
-        name = {pokemon.name}
-        img = {pokemon.img}
-        order = {pokemon.order}
-        weight = {pokemon.weight}
-        type = {pokemon.type}
-        height = {pokemon.height}
-        abilities = {pokemon.abilities}
-        moves = {pokemon.moves}
+      <Pokemon
+        name={pokemon.name}
+        img={pokemon.img}
+        order={pokemon.order}
+        weight={pokemon.weight}
+        type={pokemon.type}
+        height={pokemon.height}
+        abilities={pokemon.abilities}
+        moves={pokemon.moves}
       />
 
-    </Contenedor>
+      {pokemon.name === '' &&
+        <PokemonFullList
+          pokemons={pokemonlist}
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+        />
+      }
+
+    </div>
 
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import styles from '../styles/Form.module.css';
 
-const Form = ({ setPokemonNameSearch }) => {
+const Form = ({ setPokemonNameSearch, resetSearch }) => {
 
     const [name, setName] = useState('');
     const [error, setError] = useState(false);
@@ -26,25 +27,38 @@ const Form = ({ setPokemonNameSearch }) => {
 
 
     return (
-        <form
-            onSubmit={handleSubmit}
-        >
+        <>
+            <form
+                onSubmit={handleSubmit}
+                className={styles.formStyle}
+            >
 
-            <input
-                type='text'
-                name='pokemon'
-                value={name}
-                onChange={handleName}
-            />
-            <button>apretame puto</button>
-
-            {error
-                ? <p>Se requiere un nombre</p>
-                : null
-            }
+                <input
+                    type='text'
+                    name='pokemon'
+                    value={name}
+                    onChange={handleName}
+                    className={styles.searchInput}
+                />
+                <button
+                    className="btn btn-success text-white"
+                >Buscar</button>
 
 
-        </form>
+
+                {error
+                    ? <p className={styles.errorMesaje}>Se requiere un nombre</p>
+                    : null
+                }
+
+
+            </form>
+
+            <button
+                className="btn btn-danger text-white"
+                onClick={resetSearch}
+            >Home</button>
+        </>
     );
 }
 
