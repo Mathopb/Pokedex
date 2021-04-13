@@ -47,7 +47,7 @@ const Form = ({ setPokemonNameSearch, resetSearch }) => {
 
 
                 {error
-                    ? <p className={styles.errorMesaje}>Se requiere un nombre</p>
+                    ? <p className="text-center text-white alert alert-primary">Se requiere un nombre</p>
                     : null
                 }
 
@@ -56,7 +56,7 @@ const Form = ({ setPokemonNameSearch, resetSearch }) => {
 
             <button
                 className="btn btn-danger text-white"
-                onClick={resetSearch}
+                onClick={resetSearch} 
             >Home</button>
         </>
     );

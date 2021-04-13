@@ -30,8 +30,9 @@ function App() {
 
       setPokemonList(result.data.results);
 
-      setListMax(result.data.count);
 
+
+      setListMax(result.data.count);
     }
     getAllPokemons();
 
@@ -50,7 +51,7 @@ function App() {
       moves: result.data.moves
     }
     // console.log(obtainedPokemon);
-    console.log(result);
+    // console.log(result);
     setPokemon(obtainedPokemon);
   }
 

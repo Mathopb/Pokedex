@@ -1,37 +1,51 @@
 import React from 'react';
+import PokemonOnList from './PokemonOnList';
 
 const PokemonFullList = ({ pokemons, handlePrev, handleNext }) => {
 
-    if(!pokemons) return null;
+
+
+    if (!pokemons) return null;
 
     return (
-        <>
-            {
-                pokemons.map(({ name }, index) => (
-                    <div
-                        key={index}
-                    >
-                        <a
-                            href="!#"
-                        >
-                            {name}
-                        </a>
-                    </div>
-                ))
-            }
+        <div>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        pokemons.map(({ name }, index) => (
+
+                            <PokemonOnList
+                                key={index}
+                                name={name}
+                            />
+
+                        ))
+                    }
+                </tbody>
+            </table>
 
             <button
                 onClick={handlePrev}
+                type="button"
+                className="btn btn-outline-secondary"
             >
-                no-next
-            </button>
+                Preview
+                </button>
 
             <button
                 onClick={handleNext}
+                type="button"
+                className="btn btn-outline-secondary"
             >
-                next
-            </button>
-        </>
+                Next
+                </button>
+        </div>
     );
 }
 

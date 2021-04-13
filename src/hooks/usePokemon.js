@@ -1,35 +1,43 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from '../config/Axios';
 
-const searchPokemon = (label, inicialState, options) => {
+const usePokemon = name => {
 
-    const [state, setState] = useState(inicialState);
+    const [pokemon, setPokemon] = useState({
+        name: '',
+        img: '',
+        order: '',
+        weight: '',
+        height: '',
+        abilities: '',
+        moves: ''
+    });
 
-    const SelectSearch = () => (
-        
-        <Fragment>
-
-            <label>
-                {label}
-            </label>
-
-            <select
-                onChange = {e => setState(e.target.value)}
-                value={state}
-            >
-
-                <option value="">-- Seleccione --</option>
-                {options.map (opcion => (
-                    <option value="Nombre">{opcion.data.name}</option>
-                ))}
-
-            </select>
+    useEffect(() => {
+        getPokemonByName(this.name);
+        return () => {
             
-        </Fragment>
+        }
+    }, [pokemon])
 
-    );
+    const getPokemonByName = async (name) => {
 
-    return [state, SelectSearch, setState];
+        const result = await axios.get(`pokemon/${name.toLowerCase()}`);
+        const obtainedPokemon = {
+            name: result.data.name,
+            img: result.data.sprites.other['official-artwork'].front_default,
+            order: result.data.order,
+            weight: result.data.weight,
+            height: result.data.height,
+            abilities: result.data.abilities,
+            moves: result.data.moves
+        }
+        // console.log(obtainedPokemon);
+        console.log(result);
+        setPokemon(obtainedPokemon);
+    }
+    return [pokemon];
 
 }
 
-export default searchPokemon;
+export default usePokemon;
