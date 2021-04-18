@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../config/Axios';
+import axios from '../../config/Axios';
+import { Link } from 'react-router-dom';
+import { PINFOMATION } from '../../routes/routes'; 
 
 const PokemonOnList = ({ name, index }) => {
+
 
     const [pokemon, setPokemon] = useState({});
 
@@ -31,9 +34,9 @@ const PokemonOnList = ({ name, index }) => {
                 <span><img src={pokemon.sprites.front_default} alt='Img de {pokemon.name}'/>
                 </span> <span>{pokemon.id}</span>
             </td>
-            <td><a href="!#">{pokemon.name}</a></td>
+            <td><Link to={PINFOMATION.replace(":nameorid", pokemon.name)}>{pokemon.name}</Link></td>
         </tr>
     );
-}
+} 
 
 export default PokemonOnList;

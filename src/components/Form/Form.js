@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/Form.module.css';
+import styles from '../../styles/Form.module.css';
 
 const Form = ({ setPokemonNameSearch, resetSearch }) => {
 

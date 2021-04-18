@@ -1,5 +1,5 @@
 import React from 'react';
-import Information from './Information';
+import Information from '../Information';
 
 const Pokemon = ({ name, img, order, weight, height, abilities, moves }) => {
 

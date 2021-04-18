@@ -1,11 +1,44 @@
-import React from 'react';
-import PokemonOnList from './PokemonOnList';
+import React, { useState, useEffect } from 'react';
+import PokemonOnList from '../PokemonOnList';
+import axios from '../../config/Axios';
 
-const PokemonFullList = ({ pokemons, handlePrev, handleNext }) => {
+const PokemonFullList = () => {
+
+    const [offset, setOffset] = useState(0);
+    const [listmax, setListMax] = useState(0);
+    const [pokemonlist, setPokemonList] = useState([]);
 
 
+    useEffect(() => {
 
-    if (!pokemons) return null;
+        const getAllPokemons = async () => {
+            const result = await axios.get(`pokemon?limit=25&offset=${offset}`);
+
+            setPokemonList(result.data.results);
+
+            setListMax(result.data.count);
+        }
+        getAllPokemons();
+
+    }, [offset])
+
+    const handleNext = () => {
+
+        if ((offset + 25) > listmax) return;
+
+        setOffset(offset + 25);
+
+    }
+
+    const handlePrev = () => {
+
+        if (offset === 0) return;
+
+        setOffset(offset - 25);
+
+    }
+
+    if (!pokemonlist) return null;
 
     return (
         <div>
@@ -18,7 +51,7 @@ const PokemonFullList = ({ pokemons, handlePrev, handleNext }) => {
                 </thead>
                 <tbody>
                     {
-                        pokemons.map(({ name }, index) => (
+                        pokemonlist.map(({ name }, index) => (
 
                             <PokemonOnList
                                 key={index}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/Information.module.css';
+import styles from '../../styles/Information.module.css';
 
 const Information = ({ name, img, order, weight, height, abilities, moves }) => {
 
