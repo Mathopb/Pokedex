@@ -1,5 +1,4 @@
 .searchInput{
-    display: block;
     margin-right: 2rem;
 }
 
@@ -12,4 +11,14 @@
     display: flex;
     direction: row;
     padding: 2rem 0;
+    justify-content: flex-end;
+}
+
+.principalContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+    position: relative;
+    margin-bottom: 2rem;
 }

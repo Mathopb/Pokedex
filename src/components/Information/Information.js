@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../styles/Information.module.css';
+import MovesList from '../MovesList/MovesList';
 
 const Information = ({ name, img, order, weight, height, abilities, moves }) => {
 
@@ -52,24 +53,17 @@ const Information = ({ name, img, order, weight, height, abilities, moves }) => 
 
                 </div>
 
-                <div className="row">
                     <div className={`col-sm-12 ${styles.contenedores}`}>
                         <p className={styles.p}>Aca van las Evoluciones</p>
                     </div>
-                </div>
-
-                <div className="row">
+                
                     <div className={`col-sm-12 ${styles.contenedores}`}>
-                        <p className={styles.p}>Aca van el Array de poderes</p>
-                        <ul>
-                            {moves.map((item, index) => (
-                                <li key={index}>
-                                    <a href="www.google.com">{item.move.name}</a>
-                                </li>
-                            ))}
-                        </ul>
+                       
+                        <MovesList 
+                            moves={moves}
+                        />
+
                     </div>
-                </div>
 
             </div>
         </div>
